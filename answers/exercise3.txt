@@ -1,0 +1,19 @@
+Exercise 3: Ubuntu 101
+
+Command:
+docker start -ai exercise2-ubuntu
+
+Inside the Ubuntu container, I ran:
+nano /usr/src/app/index.js
+
+I edited the file to contain:
+console.log('Hello World')
+
+I verified the file using:
+cat /usr/src/app/index.js
+
+Output:
+console.log('Hello World')
+
+Then I exited the container:
+exit
