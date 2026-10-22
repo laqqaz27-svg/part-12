@@ -1,0 +1,16 @@
+Exercise 2: Running your second container
+
+Command:
+docker run -it --name exercise2-ubuntu ubuntu bash
+
+Inside the Ubuntu container, I ran:
+mkdir -p /usr/src/app
+touch /usr/src/app/index.js
+ls -l /usr/src/app
+
+Output of ls -l /usr/src/app:
+total 0
+-rw-r--r-- 1 root root 0 Oct 22 07:12 index.js
+
+Then I exited the container:
+exit
