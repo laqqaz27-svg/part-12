@@ -11,3 +11,4 @@ todo-app/playwright/.cache/
 
 todo-app/todo-backend/mongo_data/
 todo-app/todo-backend/todo-database-backup.archive
+todo-app/todo-backend/redis_data/
