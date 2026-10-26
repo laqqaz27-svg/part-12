@@ -1,0 +1,72 @@
+Full Stack Open — Part 12, Exercise 8: Mongo CLI
+
+Command used to access MongoDB:
+
+```bash
+docker exec -it todo-backend-mongo-1 mongosh -u root -p example --authenticationDatabase admin
+```
+
+MongoDB shell session:
+
+```text
+test> use the_database
+switched to db the_database
+
+the_database> show collections
+todos
+
+the_database> db.todos.insertOne({
+    text: "Increase the number of tools in my tool belt",
+    done: false
+})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6adefe79c4fbdee2f51593dc')
+}
+
+the_database> db.todos.find({
+    text: "Increase the number of tools in my tool belt"
+})
+[
+  {
+    _id: ObjectId('6adefe79c4fbdee2f51593dc'),
+    text: 'Increase the number of tools in my tool belt',
+    done: false
+  }
+]
+
+the_database> exit
+```
+
+Express API verification:
+
+bash
+curl -s http://localhost:3000/todos
+
+
+Output:
+
+json
+[
+  {
+    "_id": "6ada100efaf233c6cbf2bdbd",
+    "text": "Write code and test the API",
+    "done": false
+  },
+  {
+    "_id": "6ada100efaf233c6cbf2bdbe",
+    "text": "Learn about containers",
+    "done": false
+  },
+  {
+    "_id": "6ada11614c7238e7cc579ef4",
+    "text": "Practice Docker volumes",
+    "done": false,
+    "__v": 0
+  },
+  {
+    "_id": "6adefe79c4fbdee2f51593dc",
+    "text": "Increase the number of tools in my tool belt",
+    "done": false
+  }
+]
