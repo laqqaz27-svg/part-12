@@ -8,3 +8,6 @@ todo-app/mongo_data/
 todo-app/test-results/
 todo-app/playwright-report/
 todo-app/playwright/.cache/
+
+todo-app/todo-backend/mongo_data/
+todo-app/todo-backend/todo-database-backup.archive
