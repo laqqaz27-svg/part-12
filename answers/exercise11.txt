@@ -1,0 +1,70 @@
+Exercise 11: Redis CLI
+
+1. Open Redis CLI
+
+Command:
+docker exec -it todo-backend-redis-1 redis-cli
+
+2. Find the counter key
+
+Command:
+KEYS *
+
+Output:
+1) "added_todos"
+
+3. Read the counter
+
+Command:
+GET added_todos
+
+Output:
+"YOUR_ACTUAL_VALUE"
+
+4. Set the counter to 9001
+
+Command:
+SET added_todos 9001
+
+Output:
+OK
+
+Command:
+GET added_todos
+
+Output:
+"9001"
+
+5. Create a todo using Postman
+
+POST http://localhost:3000/todos
+
+6. Check the counter after creating the todo
+
+Command:
+GET added_todos
+
+Output:
+"9002"
+
+7. Delete the counter
+
+Command:
+DEL added_todos
+
+Output:
+(integer) 1
+
+Command:
+GET added_todos
+
+Output:
+(nil)
+
+8. Create another todo using Postman and check the counter again
+
+Command:
+GET added_todos
+
+Output:
+"1"
