@@ -1,4 +1,4 @@
-FROM node:24 AS build-stage
+FROM node:24 AS base
 
 WORKDIR /usr/src/app
 
@@ -7,10 +7,16 @@ RUN npm ci
 
 COPY . .
 
+FROM base AS test-stage
+
+RUN npm test
+
+FROM test-stage AS build-stage
+
 ENV VITE_BACKEND_URL=http://localhost:3000
 
 RUN npm run build
 
-FROM nginx:1.29-alpine
+FROM nginx:1.29-alpine AS production-stage
 
 COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
