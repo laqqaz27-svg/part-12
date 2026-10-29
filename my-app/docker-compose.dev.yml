@@ -1,0 +1,39 @@
+services:
+  frontend:
+    build:
+      context: ../../../blog-pipeline
+      dockerfile: ../Part 12/fs-containers/my-app/frontend/dev.Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_PROXY_TARGET: "http://backend:3003"
+    volumes:
+      - ../../../blog-pipeline/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ../../../blog-pipeline
+      dockerfile: ../Part 12/fs-containers/my-app/backend/dev.Dockerfile
+    ports:
+      - "3003:3003"
+    volumes:
+      - ../../../blog-pipeline/backend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      PORT: "3003"
+      MONGODB_URI: "mongodb://mongo:27017/bloglist"
+      SECRET: "dev-secret-change-me"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:8
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
